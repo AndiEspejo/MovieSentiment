@@ -60,7 +60,6 @@ def split_data(
         y_test : pd.Series
             List labels for test
     """
-    # TODO
     x_train, y_train, x_test, y_test = None, None, None, None
     
     x_train=train['review']

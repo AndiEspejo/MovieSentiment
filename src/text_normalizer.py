@@ -54,7 +54,6 @@ def stem_text(text: str) -> str:
         str
             Output string.
     """
-    # TODO
     ps= nltk.porter.PorterStemmer()
     words = word_tokenize(text)
     return ' '.join([ps.stem(word) for word in words])
@@ -74,7 +73,6 @@ def lemmatize_text(text: str) -> str:
         str
             Output string.
     """
-    # TODO
     doc = nlp(text)
     return ' '.join([word.lemma_ for word in doc])
 
@@ -91,7 +89,6 @@ def remove_accented_chars(text: str) -> str:
         str
             Output string.
     """
-    # TODO
     return unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8', 'ignore')
 
 
@@ -109,7 +106,6 @@ def remove_special_chars(text: str, remove_digits: Optional[bool] = False) -> st
         str
             Output string.
     """
-    # TODO
     pattern = r'[^a-zA-Z0-9\s]' if not remove_digits else r'[^a-zA-Z\s]'
     return re.sub(pattern, '', text)
 
@@ -136,7 +132,6 @@ def remove_stopwords(
         str
             Output string.
     """
-    # TODO
     tokens = tokenizer.tokenize(text)
     tokens = [token.strip() for token in tokens]
     if is_lower_case:
@@ -158,7 +153,6 @@ def remove_extra_new_lines(text: str) -> str:
         str
             Output string.
     """
-    # TODO
     return re.sub(r'[\r|\n|\r\n]+', ' ', text)
 
 
@@ -174,7 +168,6 @@ def remove_extra_whitespace(text: str) -> str:
         str
             Output string.
     """
-    # TODO
     return re.sub(' +', ' ', text)
 
 

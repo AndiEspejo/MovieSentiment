@@ -31,24 +31,15 @@ def get_performance(
         recall : float
         f1_score : float
     """
-    # TODO: Compute metrics
-    # Use sklearn.metrics.accuracy_score
     accuracy = metrics.accuracy_score(y_test, predictions)
-    # Use sklearn.metrics.precision_score
     precision = metrics.precision_score(y_test, predictions)
-    # Use sklearn.metrics.recall_score
     recall = metrics.recall_score(y_test, predictions)
-    # Use sklearn.metrics.f1_score
     f1_score = metrics.f1_score(y_test, predictions)
-    # Use sklearn.metrics.classification_report
     report = metrics.classification_report(y_test, predictions, labels=labels)
 
-    # TODO: Get Confusion Matrix, use sklearn.metrics.confusion_matrix
     cm = metrics.confusion_matrix(y_test, predictions)
 
-    # Convert Confusion Matrix to pandas DataFrame, don't change this code!
     cm_as_dataframe = pd.DataFrame(data=cm)
-    # Print metrics, don't change this code!
     print("Model Performance metrics:")
     print("-" * 30)
     print("Accuracy:", accuracy)

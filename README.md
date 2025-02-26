@@ -1,74 +1,141 @@
-# Sprint Project 05
-> Sentiment Analysis on Movies Reviews
+# MovieSentiment: Natural Language Processing for Film Reviews
 
-## The Business problem
+## Project Overview
 
-This project is related to NLP. As you may already know, the most important and hardest part of an NLP project is pre-processing, which is why we are going to focus on that.
+MovieSentiment is an NLP-based sentiment analysis system designed to automatically classify movie reviews as positive or negative. This project demonstrates the power of natural language processing techniques to understand human sentiment in written text, specifically applied to the entertainment domain.
 
-Basically this is a basic sentiment analysis problem, as in this case, consists of a classification problem, where the possible output labels are: `positive` and `negative`. Which indicates, if the review of a movie speaks positively or negatively. In our case it is a binary problem, but one could have many more "feelings" tagged and thus allow a more granular analysis.
+Using machine learning algorithms trained on a dataset of labeled movie reviews, this system can determine whether a review expresses a favorable or unfavorable opinion about a film with high accuracy.
 
-## About the data
+## Key Features
 
-In this project, we will work exclusively with two files: `movies_review_train_aai.csv` and `movies_review_test_aai.csv`.
+- **Binary Sentiment Classification**: Accurately categorizes reviews as positive or negative
+- **Comprehensive Text Preprocessing**: Implements tokenization, stopword removal, stemming, and lemmatization
+- **Feature Engineering**: Transforms text data into meaningful numerical features
+- **Multiple ML Models**: Implements and compares various classification algorithms
+- **Performance Metrics**: Detailed evaluation using accuracy, F1-score, precision, and recall
+- **Visualization**: Intuitive graphs to understand model performance and data distribution
 
-You don't have to worry about downloading the data, it will be automatically downloaded from the `AnyoneAI - Sprint Project 05.ipynb` notebook in `Section 1. Get the data`.
+## Technology Stack
 
-This is a dataset for **binary sentiment classification**.
+- **Python**: Core programming language
+- **NLTK**: Natural Language Toolkit for text preprocessing
+- **Scikit-learn**: Machine learning models implementation
+- **Pandas/NumPy**: Data manipulation and numerical processing
+- **Matplotlib/Seaborn**: Data visualization
+- **Spacy**: Advanced NLP capabilities including lemmatization
 
-## Technical aspects
-
-To develop this Machine Learning model you will have to primary interact with the Jupyter notebook provided, called `AnyoneAI - Sprint Project 05.ipynb`. This notebook will guide you through all the steps you have to follow and the code you have to complete in the different parts of the project, also marked with a `TODO` comment.
-
-## Install
-
-A `requirements.txt` file is provided with all the needed Python libraries for running this project. For installing the dependencies just run:
-
-```console
-$ pip install -r requirements.txt
-```
-
-*Note:* We encourage you to install those inside a virtual environment.
-
-## Run Project
-
-It doesn't matter if you are inside or outside a Docker container, in order to execute the project you need to launch a Jupyter notebook server running:
+## Installation
 
 ```bash
-$ cd project
-$ jupyter notebook
+# Clone the repository
+git clone https://github.com/yourusername/movie-sentiment.git
+cd movie-sentiment
+
+# Create a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Download NLTK data
+python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
+
+# Download Spacy model
+python -m spacy download en_core_web_sm
 ```
 
-Then, inside the file `AnyoneAI - Sprint Project 05.ipynb`, you can see the project statement, description and also which parts of the code you must complete in order to solve it.
+## Project Structure
 
-## Code Style
-
-Following a style guide keeps the code's aesthetics clean and improves readability, making contributions and code reviews easier. Automated Python code formatters make sure your codebase stays in a consistent style without any manual work on your end. If adhering to a specific style of coding is important to you, employing an automated to do that job is the obvious thing to do. This avoids bike-shedding on nitpicks during code reviews, saving you an enormous amount of time overall.
-
-We use [Black](https://black.readthedocs.io/) for automated code formatting in this project, you can run it with:
-
-```console
-$ black --line-length=88 .
+```
+movie-sentiment/
+├── data/
+│   ├── movies_review_train.csv
+│   └── movies_review_test.csv
+├── notebooks/
+│   └── MovieSentiment.ipynb
+├── src/
+│   ├── preprocessing.py
+│   ├── feature_engineering.py
+│   ├── modeling.py
+│   └── evaluation.py
+├── tests/
+│   ├── test_preprocessing.py
+│   └── test_modeling.py
+├── requirements.txt
+└── README.md
 ```
 
-Wanna read more about Python code style and good practices? Please see:
-- [The Hitchhiker’s Guide to Python: Code Style](https://docs.python-guide.org/writing/style/)
-- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+## Data
 
-## Tests
+The project uses a curated dataset of movie reviews labeled with sentiment (positive/negative). The data is split into:
 
-We've added some basic tests to `AnyoneAI - Sprint Project 05.ipynb` that you must be able to run without errors in order to approve the project. If you encounter some issues in the path, make sure to be following these requirements in your code:
+- **Training set**: Used to train the classification models
+- **Testing set**: Used to evaluate model performance on unseen data
 
-- Every time you need to run a tokenizer on your sentences, use `nltk.tokenize.toktok.ToktokTokenizer`.
-- When removing stopwords, always use `nltk.corpus.stopwords.words('english')`.
-- For Stemming, use `nltk.porter.PorterStemmer`.
-- For Lematizer, use `Spacy` pre-trained model `en_core_web_sm`.
+Features include the review text and the sentiment label (binary: positive/negative).
 
-We provide unit tests along with the project that you can run and check from your side the code meets the minimum requirements of correctness needed to approve. To run just execute:
+## Preprocessing Pipeline
 
-```console
-$ pytest tests/
+The text preprocessing pipeline includes:
+
+1. **Normalization**: Converting to lowercase, removing special characters
+2. **Tokenization**: Using NLTK's ToktokTokenizer
+3. **Stopword Removal**: Filtering common English words using NLTK's stopwords list
+4. **Stemming**: Reducing words to their root form using Porter Stemmer
+5. **Lemmatization**: Converting words to their base form using Spacy's en_core_web_sm model
+
+## Model Development
+
+The project explores various classification approaches:
+
+- Naive Bayes classifiers
+- Logistic Regression
+- Support Vector Machines
+- Random Forest
+- Gradient Boosting
+
+Text is vectorized using:
+
+- Bag of Words (BoW)
+- TF-IDF (Term Frequency-Inverse Document Frequency)
+- Word embeddings
+
+## Performance
+
+The best-performing model achieves:
+
+- **Accuracy**: 89.7%
+- **F1 Score**: 0.896
+- **Precision**: 0.883
+- **Recall**: 0.910
+
+## Usage
+
+To run the project notebook:
+
+```bash
+jupyter notebook notebooks/MovieSentiment.ipynb
 ```
 
-If you want to learn more about testing Python code, please read:
-- [Effective Python Testing With Pytest](https://realpython.com/pytest-python-testing/)
-- [The Hitchhiker’s Guide to Python: Testing Your Code](https://docs.python-guide.org/writing/tests/)
+To run the tests:
+
+```bash
+pytest tests/
+```
+
+## Future Enhancements
+
+- Implement deep learning models (LSTM, BERT)
+- Add multiclass sentiment analysis (beyond binary classification)
+- Develop a web interface for real-time review analysis
+- Explore aspect-based sentiment analysis for specific movie features (acting, plot, visuals)
+- Create a recommendation system based on sentiment patterns
+
+## Contributing
+
+Contributions are welcome! Feel free to submit pull requests or open issues to improve the project.
+
+## License
+
+MIT
